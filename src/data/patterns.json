@@ -1,0 +1,16 @@
+{
+  "settings-page": {
+    "description": "Standard settings page layout.",
+    "components": [
+      "Card",
+      "TextField",
+      "Select",
+      "Button"
+    ],
+    "rules": [
+      "Group related settings inside Card.",
+      "Use one primary action per section.",
+      "Place destructive actions separately."
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "Button": {
+    "notes": [
+      "Destructive actions use tone=\"critical\"; there is no \"destructive\" variant.",
+      "There is no size prop."
+    ],
+    "examples": [
+      "<Button variant=\"primary\" onClick={save}>Save</Button>",
+      "<Button variant=\"secondary\">Cancel</Button>",
+      "<Button tone=\"critical\">Delete</Button>",
+      "<Button variant=\"tertiary\" icon=\"edit\" accessibilityLabel=\"Edit\" />"
+    ]
+  },
+  "TextField": {
+    "examples": [
+      "<TextField label=\"Title\" value={title} onChange={setTitle} />"
+    ]
+  },
+  "Page": {
+    "examples": [
+      "<Page heading=\"New product\">\n  <Card heading=\"Details\">\n    <TextField label=\"Title\" value={title} onChange={setTitle} />\n    <Button variant=\"primary\" onClick={save}>Save</Button>\n  </Card>\n</Page>"
+    ]
+  }
+}

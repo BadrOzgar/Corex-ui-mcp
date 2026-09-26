@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "corex-ui": {
+      "command": "node",
+      "args": ["C:/Users/bussi/Desktop/Corex/dist/index.js"]
+    }
+  }
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings</title>
+
+    <!-- Registers the Polaris web components (s-*) that corex-ui renders. Required. -->
+    <script src="https://cdn.shopify.com/shopifycloud/polaris-1.js"></script>
+
+    <!-- One shared copy of React for both this page and corex-ui. -->
+    <script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.3.1",
+          "react-dom/client": "https://esm.sh/react-dom@18.3.1/client",
+          "@xco-agency/corex-ui": "https://esm.sh/@xco-agency/corex-ui@0.1.8?deps=react@18.3.1,react-dom@18.3.1"
+        }
+      }
+    </script>
+
+    <!-- Compiles the JSX below in the browser (fine for demos; use a bundler in production). -->
+    <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module" data-presets="react">
+      import { useState } from "react";
+      import { createRoot } from "react-dom/client";
+      import { Page, Card, BlockStack, InlineStack, TextField, Button, Banner } from "@xco-agency/corex-ui";
+
+      function SettingsPage() {
+        const [savedName, setSavedName] = useState("");
+        const [name, setName] = useState("");
+        const [touched, setTouched] = useState(false);
+        const [saving, setSaving] = useState(false);
+        const [saved, setSaved] = useState(false);
+
+        const error = touched && name.trim() === "" ? "Name is required" : undefined;
+        const dirty = name !== savedName;
+
+        function handleChange(value) {
+          setName(value);
+          setTouched(true);
+          setSaved(false);
+        }
+
+        function save() {
+          setTouched(true);
+          if (name.trim() === "") return;
+
+          setSaving(true);
+          // Replace with a real API call, e.g. fetch("/api/settings", { method: "POST", ... })
+          setTimeout(() => {
+            setSavedName(name);
+            setSaving(false);
+            setSaved(true);
+          }, 800);
+        }
+
+        return (
+          <Page heading="Settings" subheading="Manage your profile" inlineSize="small">
+            <Card heading="Profile">
+              <BlockStack gap="base">
+                {saved && (
+                  <Banner tone="success" onDismiss={() => setSaved(false)}>
+                    Settings saved.
+                  </Banner>
+                )}
+
+                <TextField
+                  label="Name"
+                  value={name}
+                  onChange={handleChange}
+                  placeholder="Jane Doe"
+                  autoComplete="name"
+                  helpText="Shown on your public profile."
+                  error={error}
+                />
+
+                <InlineStack justifyContent="flex-end">
+                  <Button variant="primary" loading={saving} disabled={!dirty} onClick={save}>
+                    Save
+                  </Button>
+                </InlineStack>
+              </BlockStack>
+            </Card>
+          </Page>
+        );
+      }
+
+      createRoot(document.getElementById("root")).render(<SettingsPage />);
+    </script>
+  </body>
+</html>
