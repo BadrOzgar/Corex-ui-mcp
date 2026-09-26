@@ -9,7 +9,9 @@
     "start": "node dist/index.js",
     "typecheck": "tsc --noEmit",
     "smoke": "node scripts/smoke.mjs",
-    "inspect": "npx @modelcontextprotocol/inspector node dist/index.js"
+    "inspect": "npx @modelcontextprotocol/inspector node dist/index.js",
+    "dev:http": "node --import tsx src/http.ts",
+    "start:http": "node dist/http.js"
   },
   "keywords": [],
   "type": "module",

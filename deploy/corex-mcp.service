@@ -1,0 +1,15 @@
+[Unit]
+Description=Corex UI MCP server
+After=network.target
+
+[Service]
+Type=simple
+User=corex
+WorkingDirectory=/opt/corex-mcp
+EnvironmentFile=/opt/corex-mcp/.env
+ExecStart=/usr/bin/node dist/http.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
